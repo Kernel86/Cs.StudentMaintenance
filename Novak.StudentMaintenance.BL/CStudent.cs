@@ -10,7 +10,7 @@ namespace Novak.StudentMaintenance.BL
         private string _id;
         private double _gpa;
 
-        public string Id
+        public new string Id
         {
             get { return _id; }
             set { _id = value; }

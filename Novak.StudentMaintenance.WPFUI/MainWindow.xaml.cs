@@ -21,6 +21,8 @@ namespace Novak.StudentMaintenance.WPFUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        CAddressTypes oAddressTypes;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +43,42 @@ namespace Novak.StudentMaintenance.WPFUI
             lblFullname.Content = oStudent.Fullname;
 
             oStudent = null;
+        }
+
+        private void btnLoadAddressTypes_Click(object sender, RoutedEventArgs e)
+        {
+            lblStatus.Content = String.Empty;
+            try
+            {
+                // Instantiate an AddressTypes object
+                oAddressTypes = new CAddressTypes();
+
+                // Call the Load
+                oAddressTypes.Load();
+
+                // Bind to the combobox
+                cboAddressTypes.ItemsSource = oAddressTypes;
+                cboAddressTypes.DisplayMemberPath = "Description";
+                cboAddressTypes.SelectedValuePath = "Id";
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnMakeAddressTypes_Click(object sender, RoutedEventArgs e)
+        {
+            lblStatus.Content = String.Empty;
+            try
+            {
+                oAddressTypes = new CAddressTypes();
+                oAddressTypes.MakeAddressTypes();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
         }
     }
 }

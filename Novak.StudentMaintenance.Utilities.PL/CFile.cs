@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
+using Novak.StudentMaintenance.CustomExceptions;
+
 namespace Novak.StudentMaintenance.Utilities.PL
 {
     public class CFile
@@ -51,7 +53,8 @@ namespace Novak.StudentMaintenance.Utilities.PL
         {
             try
             {
-                StreamReader oReader = File.OpenText(_filename);
+                StreamReader oReader = new StreamReader(_filename);
+                oReader = File.OpenText(_filename);
                 string sContents = oReader.ReadToEnd();
                 oReader.Close();
                 oReader.Dispose();
@@ -61,7 +64,7 @@ namespace Novak.StudentMaintenance.Utilities.PL
             }
             catch (FileNotFoundException)
             {
-                throw new Exception("File not found.");
+                throw new FileWasNotFoundException("File not found.");
             }
             catch (Exception ex)
             {
