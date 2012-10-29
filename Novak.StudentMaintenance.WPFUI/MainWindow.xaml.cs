@@ -57,7 +57,7 @@ namespace Novak.StudentMaintenance.WPFUI
                 oAddressTypes.Load();
 
                 // Bind to the combobox
-                cboAddressTypes.ItemsSource = oAddressTypes;
+                cboAddressTypes.ItemsSource = oAddressTypes.AddressTypes;
                 cboAddressTypes.DisplayMemberPath = "Description";
                 cboAddressTypes.SelectedValuePath = "Id";
             }
@@ -74,6 +74,30 @@ namespace Novak.StudentMaintenance.WPFUI
             {
                 oAddressTypes = new CAddressTypes();
                 oAddressTypes.MakeAddressTypes();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnSaveAddressTypes_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                oAddressTypes.Save();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnSaveAddressTypesXML_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                oAddressTypes.SaveXML();
             }
             catch (Exception ex)
             {

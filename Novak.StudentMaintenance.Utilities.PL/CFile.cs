@@ -77,7 +77,7 @@ namespace Novak.StudentMaintenance.Utilities.PL
             try
             {
                 StreamWriter oWriter = File.AppendText(_filename);
-                oWriter.WriteLine(sContents);
+                oWriter.Write(sContents);
                 oWriter.Close();
                 oWriter.Dispose();
                 oWriter = null;

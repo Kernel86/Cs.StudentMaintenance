@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 using Novak.StudentMaintenance.Utilities.PL;
 
@@ -34,11 +36,33 @@ namespace Novak.StudentMaintenance.BL
             oAddressTypes.RemoveAt(iIndex);
         }
 
+        public bool Save()
+        {
+            try
+            {
+                CFile oFile = new CFile(Properties.Settings.Default.FileName);
+                oFile.Delete();
+
+                string sFileContents = string.Empty;
+                foreach (CAddressType oAddressType in oAddressTypes)
+                    sFileContents = sFileContents + oAddressType.Id + "|" + oAddressType.Description + "\r\n";
+
+                oFile.Write(sFileContents);
+                oFile = null;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool Load()
         {
             try
             {
-                CFile oFile = new CFile("AddressTypes.txt");
+                CFile oFile = new CFile(Properties.Settings.Default.FileName);
 
                 // Clear the list
                 oAddressTypes = new List<CAddressType>();
@@ -49,14 +73,42 @@ namespace Novak.StudentMaintenance.BL
                 // Cycles through the array and make oAddressType objects
                 foreach (string sAddressType in sAddressTypes)
                 {
-                    // Make an AddressType and populate via a custom constructor
-                    CAddressType oAddressType = new CAddressType(sAddressType);
+                    if (sAddressType.Length > 0)
+                    {
+                        // Make an AddressType and populate via a custom constructor
+                        CAddressType oAddressType = new CAddressType(sAddressType);
 
-                    oAddressTypes.Add(oAddressType);
+                        oAddressTypes.Add(oAddressType);
+                    }
                 }
 
                 oFile.Close();
                 oFile = null;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool SaveXML()
+        {
+            try
+            {
+                CFile oFile = new CFile(Properties.Settings.Default.FileNameXML);
+                oFile.Delete();
+                oFile = null;
+
+                TextWriter oTextWriter = new StreamWriter(Properties.Settings.Default.FileNameXML);
+                XmlSerializer oSerializer = new XmlSerializer(typeof(List<CAddressType>));
+                oSerializer.Serialize(oTextWriter, oAddressTypes);
+
+                oTextWriter.Close();
+                oTextWriter.Dispose();
+                oTextWriter = null;
+                oSerializer = null;
 
                 return true;
             }
