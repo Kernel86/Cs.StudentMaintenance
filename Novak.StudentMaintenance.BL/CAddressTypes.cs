@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml.Serialization;
 
 using Novak.StudentMaintenance.Utilities.PL;
 
 namespace Novak.StudentMaintenance.BL
 {
-    public class CAddressTypes : CollectionBase
+    public class CAddressTypes
     {
         private List<CAddressType> oAddressTypes;
 
@@ -98,17 +96,23 @@ namespace Novak.StudentMaintenance.BL
             try
             {
                 CFile oFile = new CFile(Properties.Settings.Default.FileNameXML);
-                oFile.Delete();
+                oFile.Serialize(oAddressTypes, typeof(List<CAddressType>));
                 oFile = null;
 
-                TextWriter oTextWriter = new StreamWriter(Properties.Settings.Default.FileNameXML);
-                XmlSerializer oSerializer = new XmlSerializer(typeof(List<CAddressType>));
-                oSerializer.Serialize(oTextWriter, oAddressTypes);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-                oTextWriter.Close();
-                oTextWriter.Dispose();
-                oTextWriter = null;
-                oSerializer = null;
+        public bool LoadXML()
+        {
+            try
+            {
+                CFile oFile = new CFile(Properties.Settings.Default.FileNameXML);
+                oAddressTypes = (List<CAddressType>)oFile.Deserialize(typeof(List<CAddressType>));
 
                 return true;
             }

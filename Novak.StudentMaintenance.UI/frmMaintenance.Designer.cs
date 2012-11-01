@@ -39,7 +39,11 @@
             this.btnLoadAddressTypes = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dgvAddressTypes = new System.Windows.Forms.DataGridView();
+            this.btnLoadAddressTypesXML = new System.Windows.Forms.Button();
+            this.btnSaveAddressTypesXML = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddressTypes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMakePerson
@@ -128,7 +132,7 @@
             this.lblStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 240);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(284, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(736, 22);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -137,11 +141,42 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 17);
             // 
+            // dgvAddressTypes
+            // 
+            this.dgvAddressTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAddressTypes.Location = new System.Drawing.Point(436, 12);
+            this.dgvAddressTypes.Name = "dgvAddressTypes";
+            this.dgvAddressTypes.Size = new System.Drawing.Size(240, 150);
+            this.dgvAddressTypes.TabIndex = 10;
+            // 
+            // btnLoadAddressTypesXML
+            // 
+            this.btnLoadAddressTypesXML.Location = new System.Drawing.Point(259, 184);
+            this.btnLoadAddressTypesXML.Name = "btnLoadAddressTypesXML";
+            this.btnLoadAddressTypesXML.Size = new System.Drawing.Size(110, 23);
+            this.btnLoadAddressTypesXML.TabIndex = 12;
+            this.btnLoadAddressTypesXML.Text = "Load Address Types";
+            this.btnLoadAddressTypesXML.UseVisualStyleBackColor = true;
+            this.btnLoadAddressTypesXML.Click += new System.EventHandler(this.btnLoadAddressTypesXML_Click);
+            // 
+            // btnSaveAddressTypesXML
+            // 
+            this.btnSaveAddressTypesXML.Location = new System.Drawing.Point(259, 155);
+            this.btnSaveAddressTypesXML.Name = "btnSaveAddressTypesXML";
+            this.btnSaveAddressTypesXML.Size = new System.Drawing.Size(110, 23);
+            this.btnSaveAddressTypesXML.TabIndex = 11;
+            this.btnSaveAddressTypesXML.Text = "Save Address Types";
+            this.btnSaveAddressTypesXML.UseVisualStyleBackColor = true;
+            this.btnSaveAddressTypesXML.Click += new System.EventHandler(this.btnSaveAddressTypesXML_Click);
+            // 
             // frmMaintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(736, 262);
+            this.Controls.Add(this.btnLoadAddressTypesXML);
+            this.Controls.Add(this.btnSaveAddressTypesXML);
+            this.Controls.Add(this.dgvAddressTypes);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnLoadAddressTypes);
             this.Controls.Add(this.btnSaveAddressTypes);
@@ -156,6 +191,7 @@
             this.Text = "Form1";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddressTypes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,6 +210,9 @@
         private System.Windows.Forms.Button btnLoadAddressTypes;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.DataGridView dgvAddressTypes;
+        private System.Windows.Forms.Button btnLoadAddressTypesXML;
+        private System.Windows.Forms.Button btnSaveAddressTypesXML;
     }
 }
 

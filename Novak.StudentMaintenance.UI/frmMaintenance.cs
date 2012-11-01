@@ -91,5 +91,42 @@ namespace Novak.StudentMaintenance.UI
                 lblStatus.Text = ex.Message;
             }
         }
+
+        private void btnSaveAddressTypesXML_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                oAddressTypes.SaveXML();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void btnLoadAddressTypesXML_Click(object sender, EventArgs e)
+        {
+            lblStatus.Text = String.Empty;
+            try
+            {
+                // Instantiate an AddressTypes object
+                oAddressTypes = new CAddressTypes();
+
+                // Call the Load
+                oAddressTypes.LoadXML();
+
+                // Bind to the combobox
+                cboAddressTypes.DataSource = oAddressTypes.AddressTypes;
+                cboAddressTypes.DisplayMember = "Description";
+                cboAddressTypes.ValueMember = "Id";
+
+                // Bind the datagrid view to the list
+                dgvAddressTypes.DataSource = oAddressTypes.AddressTypes;
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = ex.Message;
+            }
+        }
     }
 }

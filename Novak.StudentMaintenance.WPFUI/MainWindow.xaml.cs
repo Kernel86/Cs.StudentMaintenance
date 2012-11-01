@@ -60,6 +60,8 @@ namespace Novak.StudentMaintenance.WPFUI
                 cboAddressTypes.ItemsSource = oAddressTypes.AddressTypes;
                 cboAddressTypes.DisplayMemberPath = "Description";
                 cboAddressTypes.SelectedValuePath = "Id";
+
+                dgvAddressTypes.DataContext = oAddressTypes.AddressTypes;
             }
             catch (Exception ex)
             {
@@ -98,6 +100,31 @@ namespace Novak.StudentMaintenance.WPFUI
             try
             {
                 oAddressTypes.SaveXML();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnLoadAddressTypesXML_Click(object sender, RoutedEventArgs e)
+        {
+            lblStatus.Content = String.Empty;
+            try
+            {
+                // Instantiate an AddressTypes object
+                oAddressTypes = new CAddressTypes();
+
+                // Call the Load
+                oAddressTypes.LoadXML();
+
+                // Bind to the combobox
+                cboAddressTypes.ItemsSource = oAddressTypes.AddressTypes;
+                cboAddressTypes.DisplayMemberPath = "Description";
+                cboAddressTypes.SelectedValuePath = "Id";
+
+                // Bind the datagrid view to the list
+                dgvAddressTypes.DataContext = oAddressTypes.AddressTypes;
             }
             catch (Exception ex)
             {

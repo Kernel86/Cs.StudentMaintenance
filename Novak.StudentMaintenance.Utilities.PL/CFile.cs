@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Xml.Serialization;
 
 using Novak.StudentMaintenance.CustomExceptions;
 
@@ -86,6 +87,41 @@ namespace Novak.StudentMaintenance.Utilities.PL
             {
                 throw ex;
             }
+        }
+
+        public void Serialize(object objects, Type objecttype)
+        {
+            try
+            {
+                Delete();
+
+                TextWriter oTextWriter = new StreamWriter(_filename);
+                XmlSerializer oSerializer = new XmlSerializer(objecttype);
+                oSerializer.Serialize(oTextWriter, objects);
+
+                oTextWriter.Close();
+                oTextWriter.Dispose();
+                oTextWriter = null;
+                oSerializer = null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public object Deserialize(Type objecttype)
+        {
+            TextReader oTextReader = new StreamReader(_filename);
+            XmlSerializer oSeializer = new XmlSerializer(objecttype);
+            object oTemp = oSeializer.Deserialize(oTextReader);
+
+            oTextReader.Close();
+            oTextReader.Dispose();
+            oTextReader = null;
+            oSeializer = null;
+
+            return oTemp;
         }
 
         public void Delete()

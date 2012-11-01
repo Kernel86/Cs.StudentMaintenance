@@ -1,21 +1,27 @@
 ﻿<Window x:Class="Novak.StudentMaintenance.WPFUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Student Maintenance" Height="322" Width="410">
-    <Grid Height="287" Width="388">
+        Title="Student Maintenance" Height="322" Width="607">
+    <Grid Height="287" Width="588" Background="#00000000">
         <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="txtFirstname" VerticalAlignment="Top" Width="120" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="10,43,0,0" Name="txtLastname" VerticalAlignment="Top" Width="120" />
         <Button Content="Make Person" Height="23" HorizontalAlignment="Left" Margin="10,76,0,0" Name="btnMakePerson" VerticalAlignment="Top" Width="96" Click="btnMakePerson_Click" />
-        <Button Content="Make Student" Height="23" HorizontalAlignment="Right" Margin="0,76,180,0" Name="btnMakeStudent" VerticalAlignment="Top" Width="96" Click="button2_Click" />
+        <Button Content="Make Student" Height="23" HorizontalAlignment="Left" Margin="112,76,0,0" Name="btnMakeStudent" VerticalAlignment="Top" Width="96" Click="button2_Click" />
         <Label Height="28" HorizontalAlignment="Left" Margin="12,105,0,0" Name="lblFullname" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="10,139,0,0" Name="cboAddressTypes" VerticalAlignment="Top" Width="120" />
         <Button Content="Make Address Types" Height="23" HorizontalAlignment="Left" Margin="136,139,0,0" Name="btnMakeAddressTypes" VerticalAlignment="Top" Width="119" Click="btnMakeAddressTypes_Click" />
         <Button Content="Save Address Types" Height="23" HorizontalAlignment="Left" Margin="136,168,0,0" Name="btnSaveAddressTypes" VerticalAlignment="Top" Width="119" Click="btnSaveAddressTypes_Click" />
         <Button Content="Load Address Types" Height="23" HorizontalAlignment="Left" Margin="136,200,0,0" Name="btnLoadAddressTypes" VerticalAlignment="Top" Width="119" Click="btnLoadAddressTypes_Click" />
-        <StatusBar Height="23" HorizontalAlignment="Left" Margin="0,264,0,0" Name="statusBar1" VerticalAlignment="Top" Width="386">
-            <StatusBarItem Name="lblStatus" Width="335" Focusable="False" />
+        <StatusBar Height="23" HorizontalAlignment="Center" Margin="0,264,0,0" Name="statusBar1" VerticalAlignment="Top" Width="588">
+            <StatusBarItem Name="lblStatus" Width="300" Focusable="False" HorizontalContentAlignment="Left" HorizontalAlignment="Left" />
         </StatusBar>
         <Button Content="Save Address Types" Height="23" HorizontalAlignment="Left" Margin="261,168,0,0" Name="btnSaveAddressTypesXML" VerticalAlignment="Top" Width="119" Click="btnSaveAddressTypesXML_Click" />
-        <Button Content="Load Address Types" Height="23" HorizontalAlignment="Left" Margin="261,200,0,0" Name="btnLoadAddressTypesXML" VerticalAlignment="Top" Width="119" />
+        <Button Content="Load Address Types" Height="23" HorizontalAlignment="Left" Margin="261,200,0,0" Name="btnLoadAddressTypesXML" VerticalAlignment="Top" Width="119" Click="btnLoadAddressTypesXML_Click" />
+        <DataGrid AutoGenerateColumns="False" Height="123" HorizontalAlignment="Left" Margin="214,10,0,0" Name="dgvAddressTypes" VerticalAlignment="Top" Width="365" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
