@@ -40,5 +40,41 @@ namespace Novak.StudentMaintenance.BL.Properties {
                 return ((string)(this["FileNameXML"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Addresses.txt")]
+        public string Addresses {
+            get {
+                return ((string)(this["Addresses"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Addresses.xml")]
+        public string AddressesXML {
+            get {
+                return ((string)(this["AddressesXML"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Students.xml")]
+        public string StudentsXML {
+            get {
+                return ((string)(this["StudentsXML"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Student.xml")]
+        public string StudentXML {
+            get {
+                return ((string)(this["StudentXML"]));
+            }
+        }
     }
 }

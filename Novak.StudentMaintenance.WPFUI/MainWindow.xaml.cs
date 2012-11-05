@@ -22,6 +22,7 @@ namespace Novak.StudentMaintenance.WPFUI
     public partial class MainWindow : Window
     {
         CAddressTypes oAddressTypes;
+        CStudent oStudent;
 
         public MainWindow()
         {
@@ -125,6 +126,32 @@ namespace Novak.StudentMaintenance.WPFUI
 
                 // Bind the datagrid view to the list
                 dgvAddressTypes.DataContext = oAddressTypes.AddressTypes;
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnMakeStudents_Click(object sender, RoutedEventArgs e)
+        {
+            lblStatus.Content = String.Empty;
+            try
+            {
+                oStudent = new CStudent();
+                oStudent.MakeStudent();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnSaveStudent_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                oStudent.SaveStudent();
             }
             catch (Exception ex)
             {

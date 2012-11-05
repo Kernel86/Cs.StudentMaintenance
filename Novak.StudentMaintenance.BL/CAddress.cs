@@ -57,5 +57,33 @@ namespace Novak.StudentMaintenance.BL
             get { return _zip; }
             set { _zip = value; }
         }
+
+    // Public Constructors
+        public CAddress()
+        {
+
+        }
+
+        public CAddress(string sAddressRecord)
+        {
+            string[] sAddressType = sAddressRecord.Split('|');
+
+            _id = int.Parse(sAddressType[0]);
+            //_type = sAddressType[1];
+            _street = sAddressType[2];
+            _city = sAddressType[3];
+            _state = sAddressType[4];
+            _zip = sAddressType[5];
+        }
+
+        public CAddress(int id, AddressType type, string street, string city, string state, string zip)
+        {
+            _id = id;
+            _type = type;
+            _street = street;
+            _city = city;
+            _state = state;
+            _zip = zip;
+        }
     }
 }

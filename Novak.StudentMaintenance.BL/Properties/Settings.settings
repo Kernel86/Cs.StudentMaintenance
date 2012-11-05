@@ -8,5 +8,17 @@
     <Setting Name="FileNameXML" Type="System.String" Scope="Application">
       <Value Profile="(Default)">AddressTypes.xml</Value>
     </Setting>
+    <Setting Name="Addresses" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Addresses.txt</Value>
+    </Setting>
+    <Setting Name="AddressesXML" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Addresses.xml</Value>
+    </Setting>
+    <Setting Name="StudentsXML" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Students.xml</Value>
+    </Setting>
+    <Setting Name="StudentXML" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Student.xml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
