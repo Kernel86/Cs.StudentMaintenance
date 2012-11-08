@@ -11,6 +11,7 @@ namespace Novak.StudentMaintenance.BL
     {
         CAddresses _oAddresses;
         private double _gpa;
+        private string _studentId;
 
     // Public Properties
         public CAddresses Addresses
@@ -31,6 +32,12 @@ namespace Novak.StudentMaintenance.BL
             set { _gpa = value; }
         }
 
+        public string StudentId
+        {
+            get { return _studentId; }
+            set { _studentId = value; }
+        }
+
     // Public Constructors
         public CStudent()
         {
@@ -41,6 +48,16 @@ namespace Novak.StudentMaintenance.BL
         {
             this.Id = id;
             _gpa = gpa;
+        }
+
+        public CStudent(string id, string studentid, double gpa, string firstname, string lastname, CAddresses oAddresses)
+        {
+            this.Id = id;
+            _studentId = studentid;
+            _gpa = gpa;
+            base.Firstname = firstname;
+            base.Lastname = lastname;
+            _oAddresses = oAddresses;
         }
 
     // Public Methods
@@ -62,6 +79,27 @@ namespace Novak.StudentMaintenance.BL
                 CFile oFile = new CFile(Properties.Settings.Default.StudentXML);
                 oFile.Serialize(this, typeof(CStudent));
                 oFile = null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void LoadStudent()
+        {
+            try
+            {
+                CFile oFile = new CFile(Properties.Settings.Default.StudentXML);
+                CStudent oStudent = (CStudent)oFile.Deserialize(typeof(CStudent));
+                oFile = null;
+
+                this.Id = oStudent.Id;
+                this.Gpa = oStudent.Gpa;
+                this.Addresses = oStudent.Addresses;
+                this.Firstname = oStudent.Firstname;
+                this.Lastname = oStudent.Lastname;
+                oStudent = null;
             }
             catch (Exception ex)
             {

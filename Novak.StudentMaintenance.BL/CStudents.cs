@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using Novak.StudentMaintenance.Utilities.PL;
 namespace Novak.StudentMaintenance.BL
 {
-    class CStudents
+    public class CStudents
     {
         private List<CStudent> oStudents;
 
@@ -32,7 +32,7 @@ namespace Novak.StudentMaintenance.BL
             oStudents.RemoveAt(iIndex);
         }
 
-        public bool SaveXML()
+        public bool SaveStudents()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace Novak.StudentMaintenance.BL
             }
         }
 
-        public bool LoadXML()
+        public bool LoadStudents()
         {
             try
             {
@@ -64,13 +64,15 @@ namespace Novak.StudentMaintenance.BL
             }
         }
 
-        public void MakeAddresss()
+        public void MakeStudents()
         {
             oStudents = new List<CStudent>();
 
-            oStudents.Add(new CStudent("1", 3.9));
+            CAddresses oAddresses = new CAddresses();
+            oAddresses.MakeAddresses();
+            oStudents.Add(new CStudent("1", "234623811", 3.9, "Shawn", "Novak", oAddresses));
 
-            oStudents.Add(new CStudent("2", 2.7));
+            oStudents.Add(new CStudent("2", "235784522", 2.7, "Bill", "Blargh", oAddresses));
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Novak.StudentMaintenance.WPFUI
     {
         CAddressTypes oAddressTypes;
         CStudent oStudent;
+        CStudents oStudents;
 
         public MainWindow()
         {
@@ -152,6 +153,66 @@ namespace Novak.StudentMaintenance.WPFUI
             try
             {
                 oStudent.SaveStudent();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnLoadStudents_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                oStudent = new CStudent();
+                oStudent.LoadStudent();
+
+                // Bind the datagrid view to the list
+                dgvAddressTypes.DataContext = oStudent.Addresses.Items;
+
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnMakeStudentss_Click(object sender, RoutedEventArgs e)
+        {
+            lblStatus.Content = String.Empty;
+            try
+            {
+                oStudents = new CStudents();
+                oStudents.MakeStudents();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnSaveStudentss_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                oStudents.SaveStudents();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void btnLoadStudentss_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                oStudents = new CStudents();
+                oStudents.LoadStudents();
+
+                // Bind the datagrid view to the list
+                dgvAddressTypes.DataContext = oStudents.Items;
+
             }
             catch (Exception ex)
             {
