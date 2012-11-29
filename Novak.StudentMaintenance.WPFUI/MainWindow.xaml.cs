@@ -219,5 +219,27 @@ namespace Novak.StudentMaintenance.WPFUI
                 lblStatus.Content = ex.Message;
             }
         }
+
+        private void btnMakeNewButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a button in code and delegate the click event to the ShowMessage method
+            Button oButton = new Button();
+
+            oButton.Content = "Display";
+            oButton.Height = 23;
+            oButton.Width = 67;
+            oButton.Margin = new Thickness(btnMakeNewButton.Margin.Left + 70, btnMakeNewButton.Margin.Right, 0, 0);
+
+            //oButton.Margin.Left = btnMakeNewButton.Margin.Left;
+            //oButton.Margin.Top = btnMakeNewButton.Margin.Top;
+            gridMain.Children.Add(oButton);
+            oButton.Click += delegate(object o, RoutedEventArgs e1) { ShowMessage(o, e); };
+
+        }
+
+        public void ShowMessage(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Click");
+        }
     }
 }

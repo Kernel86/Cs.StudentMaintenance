@@ -19,7 +19,7 @@ namespace Novak.StudentMaintenance.BL
             set { oAddressTypes = value; }
         }
 
-        public new int Count()
+        public int Count()
         {
             return oAddressTypes.Count;
         }
@@ -29,7 +29,7 @@ namespace Novak.StudentMaintenance.BL
             oAddressTypes.Add(oItem);
         }
 
-        public new void RemoveAt(int iIndex)
+        public void RemoveAt(int iIndex)
         {
             oAddressTypes.RemoveAt(iIndex);
         }

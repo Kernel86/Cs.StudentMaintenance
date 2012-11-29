@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Novak.StudentMaintenance.Interfaces;
 using Novak.StudentMaintenance.Utilities.PL;
 
 namespace Novak.StudentMaintenance.BL
 {
-    public class CStudent : CPerson
+    public class CStudent : CPerson, IStudent
     {
         CAddresses _oAddresses;
         private double _gpa;
@@ -18,12 +19,6 @@ namespace Novak.StudentMaintenance.BL
         {
             get { return _oAddresses; }
             set { _oAddresses = value; }
-        }
-
-        public new string Id
-        {
-            get { return base.Id; }
-            set { base.Id = value; }
         }
 
         public double Gpa
@@ -105,6 +100,12 @@ namespace Novak.StudentMaintenance.BL
             {
                 throw ex;
             }
+        }
+
+
+        public bool Enroll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -85,6 +85,10 @@
       <Project>{0136997B-BF31-4C5F-B91E-19C7B2A29C58}</Project>
       <Name>Novak.StudentMaintenance.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Novak.StudentMaintenance.Interfaces\Novak.StudentMaintenance.Interfaces.csproj">
+      <Project>{96744AA7-2D36-4FA9-93E8-A399FDD5DED9}</Project>
+      <Name>Novak.StudentMaintenance.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
