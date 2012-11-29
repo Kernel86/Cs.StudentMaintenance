@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Data;
 
 using Novak.StudentMaintenance.Utilities.PL;
 
@@ -34,6 +35,43 @@ namespace Novak.StudentMaintenance.BL
             oAddressTypes.RemoveAt(iIndex);
         }
 
+        public int Delete()
+        {
+            try
+            {
+                CDataAccess oCD = new CDataAccess();
+                string sCommand = "DELETE FROM tblAddressType";
+                int iRows = oCD.Delete(sCommand);
+                oCD = null;
+                return iRows;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int Update()
+        {
+            try
+            {
+                CDataAccess oCD = new CDataAccess();
+
+                foreach (CAddressType oAddressType in this.AddressTypes)
+                {
+                    oCD.Update("UPDATE tblAddressType VALUES(" + this.Description + ") WHERE id =" + oAddressType.Id);
+                }
+                string sCommand = "DELETE FROM tblAddressType";
+                int iRows = oCD.Update(sCommand);
+                oCD = null;
+                return iRows;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool Save()
         {
             try
@@ -47,6 +85,28 @@ namespace Novak.StudentMaintenance.BL
 
                 oFile.Write(sFileContents);
                 oFile = null;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetData()
+        {
+            try
+            {
+                oAddressTypes = new List<CAddressType>();
+                CDataAccess oCD = new CDataAccess();
+                DataTable odtAddressTypes = oCD.GetData("SELECT * FROM tblAddressType");
+
+                foreach (DataRow oDR in odtAddressTypes.Rows)
+                {
+                    CAddressType oAddressType = new CAddressType(oDR);
+                    Add(oAddressType);
+                }
 
                 return true;
             }
