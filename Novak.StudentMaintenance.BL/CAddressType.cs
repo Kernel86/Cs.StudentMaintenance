@@ -74,10 +74,27 @@ namespace Novak.StudentMaintenance.BL
             try
             {
                 CDataAccess oCD = new CDataAccess();
-                string sCommand = "UPDATE tblAddressType VALUES(" + this.Description + ") WHERE id =" + this.Id;
+                string sCommand = "UPDATE tblAddressType SET description = '" + Description + "' WHERE id =" + Id;
                 int iRows = oCD.Update(sCommand);
                 oCD = null;
                 return iRows;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Insert()
+        {
+            try
+            {
+                CDataAccess oCD = new CDataAccess();
+                //int iRows = oCD.Insert("INSERT INTO tblAddressType VALUES(" + Id + ", '" + Description + "')");
+                int iRows = oCD.Insert("INSERT INTO tblAddressType VALUES('" + Description + "')");
+
+                oCD = null;
+                return true;
             }
             catch (Exception ex)
             {

@@ -59,12 +59,11 @@ namespace Novak.StudentMaintenance.BL
 
                 foreach (CAddressType oAddressType in this.AddressTypes)
                 {
-                    oCD.Update("UPDATE tblAddressType VALUES(" + this.Description + ") WHERE id =" + oAddressType.Id);
+                    oCD.Update("UPDATE tblAddressType SET description = '" + oAddressType.Description + "' WHERE id =" + oAddressType.Id);
                 }
-                string sCommand = "DELETE FROM tblAddressType";
-                int iRows = oCD.Update(sCommand);
-                oCD = null;
-                return iRows;
+                //int iRows = oCD.Update(sCommand);
+                //oCD = null;
+                return -1;
             }
             catch (Exception ex)
             {
@@ -94,6 +93,20 @@ namespace Novak.StudentMaintenance.BL
             }
         }
 
+        public bool Insert(CAddressType oAddressType)
+        {
+            try
+            {
+                Add(oAddressType);
+
+                return oAddressType.Insert();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool GetData()
         {
             try
@@ -101,6 +114,50 @@ namespace Novak.StudentMaintenance.BL
                 oAddressTypes = new List<CAddressType>();
                 CDataAccess oCD = new CDataAccess();
                 DataTable odtAddressTypes = oCD.GetData("SELECT * FROM tblAddressType");
+
+                foreach (DataRow oDR in odtAddressTypes.Rows)
+                {
+                    CAddressType oAddressType = new CAddressType(oDR);
+                    Add(oAddressType);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetData(int iId)
+        {
+            try
+            {
+                oAddressTypes = new List<CAddressType>();
+                CDataAccess oCD = new CDataAccess();
+                DataTable odtAddressTypes = oCD.GetData("SELECT * FROM tblAddressType WHERE Id = " + iId);
+
+                foreach (DataRow oDR in odtAddressTypes.Rows)
+                {
+                    CAddressType oAddressType = new CAddressType(oDR);
+                    Add(oAddressType);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetData(string sFilter)
+        {
+            try
+            {
+                oAddressTypes = new List<CAddressType>();
+                CDataAccess oCD = new CDataAccess();
+                DataTable odtAddressTypes = oCD.GetData("SELECT * FROM tblAddressType WHERE Description LIKE '%" + sFilter + "%'");
 
                 foreach (DataRow oDR in odtAddressTypes.Rows)
                 {
@@ -189,6 +246,18 @@ namespace Novak.StudentMaintenance.BL
             oAddressTypes.Add(new CAddressType(1, "Local"));
 
             oAddressTypes.Add(new CAddressType(2, "Permanent"));
+        }
+
+        public CAddressType this[int index]
+        {
+            get
+            {
+                return ((CAddressType)AddressTypes[index]);
+            }
+            set
+            {
+                AddressTypes[index] = value;
+            }
         }
     }
 }
