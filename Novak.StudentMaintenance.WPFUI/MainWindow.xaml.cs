@@ -241,5 +241,18 @@ namespace Novak.StudentMaintenance.WPFUI
         {
             MessageBox.Show("Click");
         }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                oStudents.Export();
+                lblStatus.Content = oStudents.Count.ToString() + " Students Exported";
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
     }
 }

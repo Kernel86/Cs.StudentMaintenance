@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using Novak.StudentMaintenance.Utilities.Excel;
 using Novak.StudentMaintenance.Utilities.PL;
+
 namespace Novak.StudentMaintenance.BL
 {
     public class CStudents
@@ -17,9 +19,15 @@ namespace Novak.StudentMaintenance.BL
             set { oStudents = value; }
         }
 
-        public int Count()
+        public int Count
         {
-            return oStudents.Count;
+            get { return oStudents.Count; }
+        }
+
+        public CStudent this[int index]
+        {
+            get { return Items[index]; }
+            set { Items[index] = value; }
         }
 
         public void Add(CStudent oItem)
@@ -30,6 +38,34 @@ namespace Novak.StudentMaintenance.BL
         public void RemoveAt(int iIndex)
         {
             oStudents.RemoveAt(iIndex);
+        }
+
+        public bool Export()
+        {
+            try
+            {
+                int count = this.Count;
+
+                string[,] oArrayStudents = new string[count, 3];
+
+                // Fill the array
+                for (int iCnt = 0; iCnt < count; iCnt++)
+                {
+                    CStudent oStudent = this[iCnt];
+                    oArrayStudents[iCnt, 0] = oStudent.Firstname;
+                    oArrayStudents[iCnt, 1] = oStudent.Lastname;
+                    oArrayStudents[iCnt, 3] = oStudent.Gpa.ToString();
+                }
+
+                // Call the export
+                Novak.StudentMaintenance.Utilities.Excel.CExcel.Export(oArrayStudents);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool SaveStudents()

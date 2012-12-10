@@ -27,5 +27,6 @@
         <Button Content="Save Students" Height="23" HorizontalAlignment="Left" Margin="512,168,0,0" Name="btnSaveStudentss" VerticalAlignment="Top" Width="119" Click="btnSaveStudentss_Click" />
         <Button Content="Load Students" HorizontalAlignment="Left" Margin="512,200,0,0" Name="btnLoadStudentss" Width="119" Height="23" VerticalAlignment="Top" Click="btnLoadStudentss_Click" />
         <Button Content="Make Button" Height="23" HorizontalAlignment="Left" Margin="12,232,0,0" Name="btnMakeNewButton" VerticalAlignment="Top" Width="96" Click="btnMakeNewButton_Click" />
+        <Button Content="Export" Height="23" HorizontalAlignment="Left" Margin="535,232,0,0" Name="btnExport" VerticalAlignment="Top" Width="96" Click="btnExport_Click" />
     </Grid>
 </Window>
